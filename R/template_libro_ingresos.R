@@ -16,13 +16,18 @@ template_libro_ingresos <- function(db_ingresos, exfile, year, ...){
   cobro_euros <- str_remove_all(db_ingresos$Cobro, ",") %>%
     as.numeric()
 
+  total_liquido <- sum(db_ingresos$Liquido, na.rm = T)
+
   total_base_euros <- sum(base_euros, na.rm = T)
   total_cobro <- sum(cobro_euros, na.rm = T)
+  total_cambio_cobro <- total_cobro - total_liquido
 
-  total_cambio_cobro <- prettyNum(total_cobro - total_base_euros, big.mark = ",")
+  #total_cambio_cobro <- prettyNum(total_cobro - total_base_euros, big.mark = ",")
 
   total_base_euros <- prettyNum(total_base_euros, big.mark = ",")
   total_cobro <- prettyNum(total_cobro, big.mark = ",")
+  total_liquido <- prettyNum(total_liquido, big.mark = ",")
+  total_cambio_cobro <- prettyNum(total_cambio_cobro, big.mark = ",")
 
 
   #update values of report for better presentation
@@ -129,6 +134,7 @@ template_libro_ingresos <- function(db_ingresos, exfile, year, ...){
   writeData(wb,sheet = "ingresos",startRow = rows_totales, startCol = 1, "TOTAL", colNames = F) #total
   writeData(wb,sheet = "ingresos",startRow = rows_totales, startCol = 5, total_base_euros, colNames = F) #total
 
+  writeData(wb,sheet = "ingresos",startRow = rows_totales, startCol = 11, total_liquido, colNames = F) #total
   writeData(wb,sheet = "ingresos",startRow = rows_totales, startCol = 13, total_cambio_cobro, colNames = F) #total
   writeData(wb,sheet = "ingresos",startRow = rows_totales, startCol = 14, total_cobro, colNames = F) #total
 
