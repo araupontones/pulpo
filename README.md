@@ -26,8 +26,7 @@ dir_libros = "C:/Users/andre/Dropbox/Pulpo/06 Hacienda"
 
 
 #download relevant reports from zoho creator
-reportes = pulpo_get_reportes(zoho_password = "xxxxx@",
-                              zoho_token = "xxxxxxxxxxxx")
+reportes = pulpo_get_reportes()
 
 
 
@@ -55,3 +54,8 @@ create_libro_ingresos(db_ingresos = clean_invoice,
                       year = 2021)
                       
 ```
+
+# To do
+
+* improve the template for libro gastos
+* In Zoho: invoice de autonomos variables por consultoria a Pulpo, crear una row por cada invoice

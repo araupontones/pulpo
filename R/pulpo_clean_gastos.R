@@ -25,7 +25,7 @@ pulpo_clean_gastos = function(db, db_receptores,year, ...){
            `Tipo De Gasto` != "") %>%
     #get receptor NIF -----------------------------------------------------------
   left_join(
-    select(reportes$receptores,c("Receptor", "Receptor_NIF")),  by = c("Receptores"="Receptor")
+    select(db_receptores,c("Receptor", "Receptor_NIF")),  by = c("Receptores"="Receptor")
   ) %>%
     #order variables as in the book --------------------------------------------
   select(

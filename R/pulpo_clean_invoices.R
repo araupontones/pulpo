@@ -8,6 +8,23 @@
 
 
 
+#variables to be formated as numeric
+numeric_vars <- c("invoice_services_euros",
+                  "invoice_expenses_euros",
+                  "invoice_sales_tax",
+                  "invoice_sales_retention",
+                  "invoice_total_euros",
+                  "invoice_amount_transfered"
+
+)
+
+
+
+
+
+
+
+
 pulpo_clean_invoices = function(db = invoices,
                                 year,
                                 ...){
@@ -20,11 +37,9 @@ pulpo_clean_invoices = function(db = invoices,
     mutate(
       invoice_expenses_euros = case_when(invoice_expenses_euros == "" ~ 0,
                                          T ~ as.numeric(invoice_expenses_euros)),
-      across(c("invoice_total_euros",
-                    "invoice_amount_transfered",
-                    "invoice_expenses_euros",
-                    "invoice_services_euros"), as.numeric),
-           User = str_trim(User, side = "both"))
+      across(all_of(numeric_vars), as.numeric),
+      User = str_trim(User, side = "both")
+      )
 
 
 
