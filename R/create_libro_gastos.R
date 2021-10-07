@@ -30,7 +30,7 @@ create_libro_gastos <- function(db_gastos,
     db_gastos %>%
       filter(Users == usuario) %>%
       select(-Users) %>%
-      export(excel)
+      rio::export(excel, overwrite = T)
 
     message(excel)
 
