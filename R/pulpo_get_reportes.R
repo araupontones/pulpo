@@ -6,14 +6,19 @@
 #' \code{expenses}
 
 
-pulpo_get_reportes <-  function(){
+pulpo_get_reportes <-  function(reports = c("All_Invoices",
+                                            "Gastos_Report",
+                                            "Receptores_Report",
+                                            "All_Expenses",
+                                            "All_Projects")
+                                ){
 
 #define reports ----------------------------------------------------------------
-reports = c("All_Invoices",
-            "Gastos_Report",
-            "Receptores_Report",
-            "All_Expenses",
-            "All_Projects")
+# reports = c("All_Invoices",
+#             "Gastos_Report",
+#             "Receptores_Report",
+#             "All_Expenses",
+#             "All_Projects")
 
 
 #define parameters of app -------------------------------------------------------
